@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
 
 namespace WorkWithDirectory_CodeLibrary
 {
@@ -23,6 +24,22 @@ namespace WorkWithDirectory_CodeLibrary
         public MainWindow()
         {
             InitializeComponent();
+        }
+        void LibraryDriveInfo (object sender,RoutedEventArgs e)
+        {
+
+        }
+        void LibraryDirectory(object sender, RoutedEventArgs e)
+        {
+
+        }
+        void LibraryDirectoryInfo(object sender, RoutedEventArgs e)
+        {
+
+        }
+        void LibraryPath(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

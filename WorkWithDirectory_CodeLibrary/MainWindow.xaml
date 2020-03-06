@@ -1,10 +1,11 @@
-﻿<Window x:Class="WpfApp2.MainWindow"
+﻿<Window x:Class="WorkWithDirectory_CodeLibrary.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkWithDirectory_CodeLibrary"
         mc:Ignorable="d"
-        Title="Программа для слежения за файлами" Height="450" Width="1000" Background="Silver">
+        Title="Библиотека кода для работы с файловой системой" Height="450" Width="1000" Background="Silver">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150">
@@ -17,23 +18,22 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
-
             <Button 
                     Content="DriveInfo"
                     x:Name="DriveInfo"
-                    Click="ClassDriveInfo"/>
+                    Click="LibraryDriveInfo"/>
             <Button 
                     Content="Directory"
                     x:Name="Directory"
-                    Click="ClassDirectory"/>
+                    Click="LibraryDirectory"/>
             <Button 
                     Content="DirectoryInfo"
                     x:Name="DirectoryInfo"
-                    Click="ClassDirectoryInfo"/>
+                    Click="LibraryDirectoryInfo"/>
             <Button 
                     Content="Path"
                     x:Name="Path"
-                    Click="ClassPath"/>
+                    Click="LibraryPath"/>
 
         </StackPanel>
             <TextBlock
