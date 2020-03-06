@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkWithDirectory_CodeLibrary"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Библиотека кода для работы с файловой системой" Height="450" Width="1000" Background="Silver">
+        Title="Библиотека кода для работы с файловой системой" Height="450" Width="1000" Background="Lavender" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150">
@@ -17,33 +18,72 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
-            <Button 
+        <ScrollViewer Name="scroll1" CanContentScroll="True">
+            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+                <Button 
                     Content="DriveInfo"
                     x:Name="DriveInfo"
                     Click="LibraryDriveInfo"/>
-            <Button 
+                <Button 
+                    
                     Content="Directory"
                     x:Name="Directory"
                     Click="LibraryDirectory"/>
-            <Button 
+
+                <Button 
                     Content="DirectoryInfo"
                     x:Name="DirectoryInfo"
                     Click="LibraryDirectoryInfo"/>
-            <Button 
+                <Button 
                     Content="Path"
                     x:Name="Path"
-                    Click="LibraryPath"/>
-
-        </StackPanel>
-            <TextBlock
+                    Click="LibraryPath" />
+                <Button x:Name="escButton" Content="Выход" IsCancel="True" Click="escButton_Click" />
+                <Button x:Name="acceptButton" Content="ОК" IsDefault="True" Click="acceptButton_Click" />
+                <CheckBox x:Name="checkBox1" IsThreeState="False" IsChecked="False" Height="20" Content="Неотмечено"/>
+                <CheckBox x:Name="checkBox2" IsThreeState="True" IsChecked="True" Height="20" Content="Отмечено" />
+                <CheckBox x:Name="checkBox3" IsThreeState="True" IsChecked="{x:Null}" Height="20" Content="Неопределено"/>
+                <CheckBox x:Name="checkBox" IsChecked="False" Height="20" Content="Флажок"
+                      IsThreeState="True"
+                      Unchecked="checkBox_Unchecked"
+                      Indeterminate="checkBox_Indeterminate"
+                      Checked="checkBox_Checked" />
+                <RadioButton GroupName="Languages" Content="C#" IsChecked="True" Checked="RadioButton_Checked"/>
+                <RadioButton GroupName="Languages" Content="VB.NET" />
+                <RadioButton GroupName="Languages" Content="C++" />
+                <RadioButton GroupName="Technologies" Content="WPF" IsChecked="True" />
+                <RadioButton GroupName="Technologies" Content="WinForms" />
+                <RadioButton GroupName="Technologies" Content="ASP.NET" />
+            </StackPanel>
+        </ScrollViewer>
+        <TextBlock      
             Grid.Column="1"
                 Grid.RowSpan="2"
             Background="Black"
             />
-        <TextBlock
-            Grid.Column="0"
-            Grid.Row="1"
-            />
+        <ScrollViewer Name="scroll2" CanContentScroll="True" Grid.Column="2" Grid.Row="0"  >
+            <DataGrid x:Name="phonesGrid" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray"
+    RowBackground="LightGray" AlternatingRowBackground="White" Grid.Column="2">
+                <DataGrid.Items>
+                    <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
+                    <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
+                    <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
+                </DataGrid.Items>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding Path=Title}" Width="90" />
+                    <DataGridHyperlinkColumn Header="Компания" Binding="{Binding Path=Company}" Width="80" />
+                    <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="50" />
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Price}" />
+                            <TextBlock Text=" рублей по скидке" />
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+        </ScrollViewer>
     </Grid>
 </Window>
+    

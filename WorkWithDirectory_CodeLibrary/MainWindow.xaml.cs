@@ -12,13 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Forms;
+using System.Collections;
 
 namespace WorkWithDirectory_CodeLibrary
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -41,5 +39,36 @@ namespace WorkWithDirectory_CodeLibrary
         {
 
         }
+        private void escButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close(); // закрытие окна
+        }
+        private void acceptButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Действие выполнено");
+        }
+        private void checkBox_Checked(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(checkBox.Content.ToString() + " отмечен");
+        }
+
+        private void checkBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(checkBox.Content.ToString() + " не отмечен");
+        }
+
+        private void checkBox_Indeterminate(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(checkBox.Content.ToString() + " в неопределенном состоянии");
+        }
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton pressed = (RadioButton)sender;
+            MessageBox.Show(pressed.Content.ToString());
+        }
+     
     }
 }
+
+
+
