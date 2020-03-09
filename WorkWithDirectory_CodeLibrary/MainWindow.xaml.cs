@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections;
+using Microsoft.Office.Interop;
 
 namespace WorkWithDirectory_CodeLibrary
 {
@@ -45,7 +46,13 @@ namespace WorkWithDirectory_CodeLibrary
         }
         private void acceptButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Действие выполнено");
+            //object oMissing = System.Reflection.Missing.Value;
+            //object oEndOfDoc = "\\endofdoc"; /* \endofdoc is a predefined bookmark */
+            ////Start Word and create a new document.
+            //Word._Application oWord = new Word.Application();
+            //oWord.Visible = true;
+            //Word._Document oDoc = oWord.Documents.Add(ref oMissing, ref oMissing, ref oMissing, ref oMissing);
+            //MessageBox.Show("Действие выполнено");
         }
         private void checkBox_Checked(object sender, RoutedEventArgs e)
         {
@@ -66,7 +73,11 @@ namespace WorkWithDirectory_CodeLibrary
             RadioButton pressed = (RadioButton)sender;
             MessageBox.Show(pressed.Content.ToString());
         }
-     
+
+        private void DriveInfo_DpiChanged(object sender, DpiChangedEventArgs e)
+        {
+
+        }
     }
 }
 

@@ -7,6 +7,7 @@
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Библиотека кода для работы с файловой системой" Height="450" Width="1000" Background="Lavender" >
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150">
@@ -23,7 +24,8 @@
                 <Button 
                     Content="DriveInfo"
                     x:Name="DriveInfo"
-                    Click="LibraryDriveInfo"/>
+                    Click="LibraryDriveInfo"
+                    />
                 <Button 
                     
                     Content="Directory"
@@ -61,9 +63,10 @@
                 Grid.RowSpan="2"
             Background="Black"
             />
-        <ScrollViewer Name="scroll2" CanContentScroll="True" Grid.Column="2" Grid.Row="0"  >
+        <StackPanel Grid.Column="2" Grid.Row="0" >
+        <ScrollViewer Name="scroll2" CanContentScroll="True"  >
             <DataGrid x:Name="phonesGrid" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray"
-    RowBackground="LightGray" AlternatingRowBackground="White" Grid.Column="2">
+    RowBackground="LightGray" AlternatingRowBackground="White" >
                 <DataGrid.Items>
                     <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
                     <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
@@ -84,6 +87,26 @@
                 </DataGrid.RowDetailsTemplate>
             </DataGrid>
         </ScrollViewer>
+        <ScrollViewer Name="scroll3" CanContentScroll="True" >
+            <ListView Name="phonesList" ItemsSource="{DynamicResource ResourceKey=phones}" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Title}">Модель</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Company}" Width="100">Компания</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Price}">Цена</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+                <ListView.Resources>
+                    <col:ArrayList x:Key="phones">
+                        <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
+                        <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
+                        <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
+                        <local:Phone Title = "Galaxy Edge" Company = "Samsung" Price = "45670" />
+                    </col:ArrayList>
+                </ListView.Resources>
+            </ListView>
+        </ScrollViewer>
+        </StackPanel>
     </Grid>
 </Window>
     
