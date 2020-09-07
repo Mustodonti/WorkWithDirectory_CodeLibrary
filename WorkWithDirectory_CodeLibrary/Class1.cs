@@ -24,4 +24,18 @@ namespace WorkWithDirectory_CodeLibrary
         public string Company { get; set; }
         public int Price { get; set; }
     }
+    public class MyTable
+    {
+        public MyTable(int Id, string Vocalist, string Album, int Year)
+        {
+            this.Id = Id;
+            this.Vocalist = Vocalist;
+            this.Album = Album;
+            this.Year = Year;
+        }
+        public int Id { get; set; }
+        public string Vocalist { get; set; }
+        public string Album { get; set; }
+        public int Year { get; set; }
+    }
 }

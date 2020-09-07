@@ -8,105 +8,117 @@
         mc:Ignorable="d"
         Title="Библиотека кода для работы с файловой системой" Height="450" Width="1000" Background="Lavender" >
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150">
-            </ColumnDefinition>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
-        </Grid.RowDefinitions>
-        <ScrollViewer Name="scroll1" CanContentScroll="True">
-            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
-                <Button 
+
+    <TabControl x:Name="MainPanel">
+        <TabItem Header="Настройки">
+            <StackPanel>
+                <TextBox x:Name="TextBox_NewTable"/>
+                <Button x:Name="Button_NewTable" Content="Добавить новую Вкладку с Таблицей" Click="Button_NewTable_Click"/>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="First" IsSelected="True">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer Name="scroll1" CanContentScroll="True">
+                    <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+                        <Button 
                     Content="DriveInfo"
                     x:Name="DriveInfo"
                     Click="LibraryDriveInfo"
                     />
-                <Button 
+                        <Button 
                     
                     Content="Directory"
                     x:Name="Directory"
                     Click="LibraryDirectory"/>
 
-                <Button 
+                        <Button 
                     Content="DirectoryInfo"
                     x:Name="DirectoryInfo"
                     Click="LibraryDirectoryInfo"/>
-                <Button 
+                        <Button 
                     Content="Path"
                     x:Name="Path"
                     Click="LibraryPath" />
-                <Button x:Name="escButton" Content="Выход" IsCancel="True" Click="escButton_Click" />
-                <Button x:Name="acceptButton" Content="ОК" IsDefault="True" Click="acceptButton_Click" />
-                <CheckBox x:Name="checkBox1" IsThreeState="False" IsChecked="False" Height="20" Content="Неотмечено"/>
-                <CheckBox x:Name="checkBox2" IsThreeState="True" IsChecked="True" Height="20" Content="Отмечено" />
-                <CheckBox x:Name="checkBox3" IsThreeState="True" IsChecked="{x:Null}" Height="20" Content="Неопределено"/>
-                <CheckBox x:Name="checkBox" IsChecked="False" Height="20" Content="Флажок"
+                        <Button x:Name="escButton" Content="Выход" IsCancel="True" Click="escButton_Click" />
+                        <Button x:Name="acceptButton" Content="ОК" IsDefault="True" Click="acceptButton_Click" />
+                        <CheckBox x:Name="checkBox1" IsThreeState="False" IsChecked="False" Height="20" Content="Неотмечено"/>
+                        <CheckBox x:Name="checkBox2" IsThreeState="True" IsChecked="True" Height="20" Content="Отмечено" />
+                        <CheckBox x:Name="checkBox3" IsThreeState="True" IsChecked="{x:Null}" Height="20" Content="Неопределено"/>
+                        <CheckBox x:Name="checkBox" IsChecked="False" Height="20" Content="Флажок"
                       IsThreeState="True"
                       Unchecked="checkBox_Unchecked"
                       Indeterminate="checkBox_Indeterminate"
                       Checked="checkBox_Checked" />
-                <RadioButton GroupName="Languages" Content="C#" IsChecked="True" Checked="RadioButton_Checked"/>
-                <RadioButton GroupName="Languages" Content="VB.NET" />
-                <RadioButton GroupName="Languages" Content="C++" />
-                <RadioButton GroupName="Technologies" Content="WPF" IsChecked="True" />
-                <RadioButton GroupName="Technologies" Content="WinForms" />
-                <RadioButton GroupName="Technologies" Content="ASP.NET" />
-            </StackPanel>
-        </ScrollViewer>
-        <TextBlock      
+                        <RadioButton GroupName="Languages" Content="C#" IsChecked="True" Checked="RadioButton_Checked"/>
+                        <RadioButton GroupName="Languages" Content="VB.NET" />
+                        <RadioButton GroupName="Languages" Content="C++" />
+                        <RadioButton GroupName="Technologies" Content="WPF" IsChecked="True" />
+                        <RadioButton GroupName="Technologies" Content="WinForms" />
+                        <RadioButton GroupName="Technologies" Content="ASP.NET" />
+                    </StackPanel>
+                </ScrollViewer>
+                <TextBlock      
             Grid.Column="1"
                 Grid.RowSpan="2"
             Background="Black"
             />
-        <StackPanel Grid.Column="2" Grid.Row="0" >
-        <ScrollViewer Name="scroll2" CanContentScroll="True"  >
-            <DataGrid x:Name="phonesGrid" AutoGenerateColumns="False" HorizontalGridLinesBrush="DarkGray"
+                <StackPanel Grid.Column="2" Grid.Row="0" >
+                    <DataGrid x:Name="grid" HorizontalAlignment="Left" Height="251" Margin="23,23,0,0" VerticalAlignment="Top" Width="455" Loaded="grid_Loaded" MouseUp="grid_MouseUp"/>
+                    <ScrollViewer Name="scroll2" CanContentScroll="True"  >
+                        <DataGrid x:Name="phonesGrid" AutoGenerateColumns="True" HorizontalGridLinesBrush="DarkGray"
     RowBackground="LightGray" AlternatingRowBackground="White" >
-                <DataGrid.Items>
-                    <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
-                    <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
-                    <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
-                </DataGrid.Items>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Модель" Binding="{Binding Path=Title}" Width="90" />
-                    <DataGridHyperlinkColumn Header="Компания" Binding="{Binding Path=Company}" Width="80" />
-                    <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="50" />
-                </DataGrid.Columns>
-                <DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Path=Price}" />
-                            <TextBlock Text=" рублей по скидке" />
-                        </StackPanel>
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>
-            </DataGrid>
-        </ScrollViewer>
-        <ScrollViewer Name="scroll3" CanContentScroll="True" >
-            <ListView Name="phonesList" ItemsSource="{DynamicResource ResourceKey=phones}" >
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Title}">Модель</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Company}" Width="100">Компания</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Price}">Цена</GridViewColumn>
-                    </GridView>
-                </ListView.View>
-                <ListView.Resources>
-                    <col:ArrayList x:Key="phones">
-                        <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
-                        <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
-                        <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
-                        <local:Phone Title = "Galaxy Edge" Company = "Samsung" Price = "45670" />
-                    </col:ArrayList>
-                </ListView.Resources>
-            </ListView>
-        </ScrollViewer>
-        </StackPanel>
-    </Grid>
+                            <DataGrid.Items>
+                                <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
+                                <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
+                                <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
+                            </DataGrid.Items>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Модель" Binding="{Binding Path=Title}" Width="90" />
+                                <DataGridTextColumn Header="Компания" Binding="{Binding Path=Company}" Width="80" />
+                                <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}" Width="50" />
+                            </DataGrid.Columns>
+                            <DataGrid.RowDetailsTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=Price}" />
+                                        <TextBlock Text=" рублей по скидке" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGrid.RowDetailsTemplate>
+                        </DataGrid>
+                    </ScrollViewer>
+                    <ScrollViewer Name="scroll3" CanContentScroll="True" >
+                        <ListView Name="phonesList" ItemsSource="{DynamicResource ResourceKey=phones}" >
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Title}">Модель</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Company}" Width="100">Компания</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Price}">Цена</GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                            <ListView.Resources>
+                                <col:ArrayList x:Key="phones">
+                                    <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
+                                    <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
+                                    <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
+                                    <local:Phone Title = "Galaxy Edge" Company = "Samsung" Price = "45670" />
+                                </col:ArrayList>
+                            </ListView.Resources>
+                        </ListView>
+                    </ScrollViewer>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+    </TabControl>
 </Window>
     
